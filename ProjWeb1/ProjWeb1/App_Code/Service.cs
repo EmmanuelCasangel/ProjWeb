@@ -17,21 +17,48 @@ public class Service : System.Web.Services.WebService
         //InitializeComponent(); 
     }
     [WebMethod]
-    public double  CalIR(float salB)
+    public double  CalIR(double salB, int numDep)
     {
-        double ir;
+        double salIR = CalINSS(salB);
+        salIR = salIR - (189.59 * numDep);
 
-        if (salB < 1903.98)
+        if (salIR < 1903.98)
             return 0;
-        if(salB < 2826.65)
-            return salB * 0.075;
-        if(salB < 3751.05) 
-            return salB * 0.15;
-        if (salB < 4664.68)
-            return salB * 0.225;
-        return salB * 0.275;
+        if(salIR < 2826.65)
+            return salIR * 0.075;
+        if(salIR < 3751.05) 
+            return salIR * 0.15;
+        if (salIR < 4664.68)
+            return salIR * 0.225;
+        //>4664.68
+        return salIR * 0.275;
     }
 
+    [WebMethod]
+    public double CalINSS(double salB)
+    {
+
+        if (salB < 1659.38)
+            return salB * 0.08;
+        if (salB < 2765.66)
+            return salB * 0.09;
+        if (salB < 5531.31)
+            return salB * 0.11;
+        //>5531.31
+            return 5531.31 * 0.11;        
+    }
+
+    [WebMethod]
+    public double CalFGTS(float salB)
+    {
+        return salB * 0.08;
+    }
+
+    [WebMethod]
+    public double CalcSalLiq(float salB, int numDemp)
+    {
+        return salB - (CalINSS(salB) + CalIR(salB, numDemp));
+    }
 
     [WebMethod]
     public bool Valida(string cpf)
