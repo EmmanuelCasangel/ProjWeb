@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CalIR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="salB" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="numDep" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalIRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CalIRResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalINSS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="salB" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalINSSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CalINSSResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalFGTS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="salB" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalFGTSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CalFGTSResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalcSalLiq">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="salB" type="s:float" />
+            <s:element minOccurs="1" maxOccurs="1" name="numDemp" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalcSalLiqResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CalcSalLiqResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Valida">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cpf" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CalIRSoapIn">
+    <wsdl:part name="parameters" element="tns:CalIR" />
+  </wsdl:message>
+  <wsdl:message name="CalIRSoapOut">
+    <wsdl:part name="parameters" element="tns:CalIRResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalINSSSoapIn">
+    <wsdl:part name="parameters" element="tns:CalINSS" />
+  </wsdl:message>
+  <wsdl:message name="CalINSSSoapOut">
+    <wsdl:part name="parameters" element="tns:CalINSSResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalFGTSSoapIn">
+    <wsdl:part name="parameters" element="tns:CalFGTS" />
+  </wsdl:message>
+  <wsdl:message name="CalFGTSSoapOut">
+    <wsdl:part name="parameters" element="tns:CalFGTSResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalcSalLiqSoapIn">
+    <wsdl:part name="parameters" element="tns:CalcSalLiq" />
+  </wsdl:message>
+  <wsdl:message name="CalcSalLiqSoapOut">
+    <wsdl:part name="parameters" element="tns:CalcSalLiqResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidaSoapIn">
+    <wsdl:part name="parameters" element="tns:Valida" />
+  </wsdl:message>
+  <wsdl:message name="ValidaSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="CalIR">
+      <wsdl:input message="tns:CalIRSoapIn" />
+      <wsdl:output message="tns:CalIRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalINSS">
+      <wsdl:input message="tns:CalINSSSoapIn" />
+      <wsdl:output message="tns:CalINSSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalFGTS">
+      <wsdl:input message="tns:CalFGTSSoapIn" />
+      <wsdl:output message="tns:CalFGTSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalcSalLiq">
+      <wsdl:input message="tns:CalcSalLiqSoapIn" />
+      <wsdl:output message="tns:CalcSalLiqSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Valida">
+      <wsdl:input message="tns:ValidaSoapIn" />
+      <wsdl:output message="tns:ValidaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CalIR">
+      <soap:operation soapAction="http://tempuri.org/CalIR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalINSS">
+      <soap:operation soapAction="http://tempuri.org/CalINSS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalFGTS">
+      <soap:operation soapAction="http://tempuri.org/CalFGTS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcSalLiq">
+      <soap:operation soapAction="http://tempuri.org/CalcSalLiq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Valida">
+      <soap:operation soapAction="http://tempuri.org/Valida" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CalIR">
+      <soap12:operation soapAction="http://tempuri.org/CalIR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalINSS">
+      <soap12:operation soapAction="http://tempuri.org/CalINSS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalFGTS">
+      <soap12:operation soapAction="http://tempuri.org/CalFGTS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcSalLiq">
+      <soap12:operation soapAction="http://tempuri.org/CalcSalLiq" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Valida">
+      <soap12:operation soapAction="http://tempuri.org/Valida" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://localhost:49767/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://localhost:49767/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
