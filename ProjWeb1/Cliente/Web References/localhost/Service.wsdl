@@ -60,17 +60,17 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="Valida">
+      <s:element name="ValidaCPF">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="cpf" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ValidaResponse">
+      <s:element name="ValidaCPFResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="ValidaResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ValidaCPFResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -100,11 +100,11 @@
   <wsdl:message name="CalcSalLiqSoapOut">
     <wsdl:part name="parameters" element="tns:CalcSalLiqResponse" />
   </wsdl:message>
-  <wsdl:message name="ValidaSoapIn">
-    <wsdl:part name="parameters" element="tns:Valida" />
+  <wsdl:message name="ValidaCPFSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidaCPF" />
   </wsdl:message>
-  <wsdl:message name="ValidaSoapOut">
-    <wsdl:part name="parameters" element="tns:ValidaResponse" />
+  <wsdl:message name="ValidaCPFSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidaCPFResponse" />
   </wsdl:message>
   <wsdl:portType name="ServiceSoap">
     <wsdl:operation name="CalIR">
@@ -123,9 +123,9 @@
       <wsdl:input message="tns:CalcSalLiqSoapIn" />
       <wsdl:output message="tns:CalcSalLiqSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="Valida">
-      <wsdl:input message="tns:ValidaSoapIn" />
-      <wsdl:output message="tns:ValidaSoapOut" />
+    <wsdl:operation name="ValidaCPF">
+      <wsdl:input message="tns:ValidaCPFSoapIn" />
+      <wsdl:output message="tns:ValidaCPFSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
@@ -166,8 +166,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Valida">
-      <soap:operation soapAction="http://tempuri.org/Valida" style="document" />
+    <wsdl:operation name="ValidaCPF">
+      <soap:operation soapAction="http://tempuri.org/ValidaCPF" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -214,8 +214,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Valida">
-      <soap12:operation soapAction="http://tempuri.org/Valida" style="document" />
+    <wsdl:operation name="ValidaCPF">
+      <soap12:operation soapAction="http://tempuri.org/ValidaCPF" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -49,19 +49,19 @@ public class Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public double CalFGTS(float salB)
+    public double CalFGTS(double salB)
     {
         return salB * 0.08;
     }
 
     [WebMethod]
-    public double CalcSalLiq(float salB, int numDemp)
+    public double CalSalLiq(float salB, float inss, float ir)
     {
-        return salB - (CalINSS(salB) + CalIR(salB, numDemp));
+        return salB - (inss + ir);
     }
 
     [WebMethod]
-    public bool Valida(string cpf)
+    public bool ValidaCPF(string cpf)
 
     {
 

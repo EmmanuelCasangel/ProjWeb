@@ -37,7 +37,7 @@ namespace Cliente.localhost {
         
         private System.Threading.SendOrPostCallback CalcSalLiqOperationCompleted;
         
-        private System.Threading.SendOrPostCallback ValidaOperationCompleted;
+        private System.Threading.SendOrPostCallback ValidaCPFOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -90,7 +90,7 @@ namespace Cliente.localhost {
         public event CalcSalLiqCompletedEventHandler CalcSalLiqCompleted;
         
         /// <remarks/>
-        public event ValidaCompletedEventHandler ValidaCompleted;
+        public event ValidaCPFCompletedEventHandler ValidaCPFCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CalIR", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -213,31 +213,31 @@ namespace Cliente.localhost {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Valida", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool Valida(string cpf) {
-            object[] results = this.Invoke("Valida", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ValidaCPF", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool ValidaCPF(string cpf) {
+            object[] results = this.Invoke("ValidaCPF", new object[] {
                         cpf});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void ValidaAsync(string cpf) {
-            this.ValidaAsync(cpf, null);
+        public void ValidaCPFAsync(string cpf) {
+            this.ValidaCPFAsync(cpf, null);
         }
         
         /// <remarks/>
-        public void ValidaAsync(string cpf, object userState) {
-            if ((this.ValidaOperationCompleted == null)) {
-                this.ValidaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidaOperationCompleted);
+        public void ValidaCPFAsync(string cpf, object userState) {
+            if ((this.ValidaCPFOperationCompleted == null)) {
+                this.ValidaCPFOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidaCPFOperationCompleted);
             }
-            this.InvokeAsync("Valida", new object[] {
-                        cpf}, this.ValidaOperationCompleted, userState);
+            this.InvokeAsync("ValidaCPF", new object[] {
+                        cpf}, this.ValidaCPFOperationCompleted, userState);
         }
         
-        private void OnValidaOperationCompleted(object arg) {
-            if ((this.ValidaCompleted != null)) {
+        private void OnValidaCPFOperationCompleted(object arg) {
+            if ((this.ValidaCPFCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ValidaCompleted(this, new ValidaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.ValidaCPFCompleted(this, new ValidaCPFCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -257,6 +257,11 @@ namespace Cliente.localhost {
                 return true;
             }
             return false;
+        }
+
+        internal string CalFGTS(double salB)
+        {
+            throw new NotImplementedException();
         }
     }
     
@@ -366,17 +371,17 @@ namespace Cliente.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    public delegate void ValidaCompletedEventHandler(object sender, ValidaCompletedEventArgs e);
+    public delegate void ValidaCPFCompletedEventHandler(object sender, ValidaCPFCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ValidaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class ValidaCPFCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal ValidaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal ValidaCPFCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

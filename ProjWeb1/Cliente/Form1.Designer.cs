@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.ltbHoll = new System.Windows.Forms.ListBox();
             this.btnFechar = new System.Windows.Forms.Button();
             this.btnGerar = new System.Windows.Forms.Button();
             this.txtSalB = new System.Windows.Forms.TextBox();
@@ -38,15 +38,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
-            // listBox1
+            // ltbHoll
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(26, 235);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(149, 121);
-            this.listBox1.TabIndex = 19;
+            this.ltbHoll.FormattingEnabled = true;
+            this.ltbHoll.Location = new System.Drawing.Point(25, 235);
+            this.ltbHoll.Name = "ltbHoll";
+            this.ltbHoll.Size = new System.Drawing.Size(149, 121);
+            this.ltbHoll.TabIndex = 19;
             // 
             // btnFechar
             // 
@@ -57,6 +60,7 @@
             this.btnFechar.TabStop = false;
             this.btnFechar.Text = "Fechar Formulario";
             this.btnFechar.UseVisualStyleBackColor = true;
+            this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click);
             // 
             // btnGerar
             // 
@@ -66,6 +70,7 @@
             this.btnGerar.TabIndex = 17;
             this.btnGerar.Text = "Gerar Hollerit";
             this.btnGerar.UseVisualStyleBackColor = true;
+            this.btnGerar.Click += new System.EventHandler(this.btnGerar_Click);
             // 
             // txtSalB
             // 
@@ -128,12 +133,31 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "CPF";
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(200, 129);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(115, 20);
+            this.numericUpDown1.TabIndex = 20;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.label5.Location = new System.Drawing.Point(300, 125);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(109, 29);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "                ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 395);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(329, 395);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.ltbHoll);
             this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.btnGerar);
             this.Controls.Add(this.txtSalB);
@@ -145,6 +169,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,7 +177,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox ltbHoll;
         private System.Windows.Forms.Button btnFechar;
         private System.Windows.Forms.Button btnGerar;
         private System.Windows.Forms.TextBox txtSalB;
@@ -162,6 +187,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label5;
     }
 }
 
