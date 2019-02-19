@@ -25,22 +25,22 @@ namespace Cliente
                 ltbHoll.Text = "Favor Preencha todos os campos";
             else
             {
-                if (service.ValidaCPF(txtCPF.Text))
+                double[] holl = service.gerar(Convert.ToDouble(txtSalB.Text), Convert.ToInt16(txtNumDep.Text), txtCPF.Text);
+
+                if (holl != null)
                 {
-                    double salB = Convert.ToDouble(txtSalB.Text);
+                   
+                    ltbHoll.Items.Add("Salario Bruto = R$ " + Convert.ToDouble(txtSalB.Text));
 
-                    ltbHoll.Items.Add("Salario Bruto = R$ " + salB);
+                    ltbHoll.Items.Add("INSS = R$ " + holl[0]);
 
-                    double inss = service.CalINSS(salB);
-                    ltbHoll.Items.Add( "INSS = R$ " + inss);
+                    ltbHoll.Items.Add("IR = R$ "+ holl[1]);
 
-                    double ir = service.CalIR(salB, Convert.ToInt16(txtNumDep.Text));
-                    ltbHoll.Items.Add("IR = R$ "+ ir);
+                    ltbHoll.Items.Add("FGTS = R$ " + holl[2]);
 
-                    ltbHoll.Items.Add("FGTS = R$ " + service.CalFGTS(salB));
-
-                    ltbHoll.Items.Add("Salario Liquido = R$ " + service.CalSalLiq(salB, inss, ir);
+                    ltbHoll.Items.Add("Salario Liquido = R$ " + holl[3]);
                 }
+
                 else
                     ltbHoll.Text = "CPF Invalido";
 

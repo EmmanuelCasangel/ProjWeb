@@ -29,15 +29,7 @@ namespace Cliente.localhost {
     [System.Web.Services.WebServiceBindingAttribute(Name="ServiceSoap", Namespace="http://tempuri.org/")]
     public partial class Service : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback CalIROperationCompleted;
-        
-        private System.Threading.SendOrPostCallback CalINSSOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback CalFGTSOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback CalcSalLiqOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback ValidaCPFOperationCompleted;
+        private System.Threading.SendOrPostCallback gerarOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -78,166 +70,38 @@ namespace Cliente.localhost {
         }
         
         /// <remarks/>
-        public event CalIRCompletedEventHandler CalIRCompleted;
+        public event gerarCompletedEventHandler gerarCompleted;
         
         /// <remarks/>
-        public event CalINSSCompletedEventHandler CalINSSCompleted;
-        
-        /// <remarks/>
-        public event CalFGTSCompletedEventHandler CalFGTSCompleted;
-        
-        /// <remarks/>
-        public event CalcSalLiqCompletedEventHandler CalcSalLiqCompleted;
-        
-        /// <remarks/>
-        public event ValidaCPFCompletedEventHandler ValidaCPFCompleted;
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CalIR", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public double CalIR(double salB, int numDep) {
-            object[] results = this.Invoke("CalIR", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/gerar", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public double[] gerar(double salB, int numDep, string cpf) {
+            object[] results = this.Invoke("gerar", new object[] {
                         salB,
-                        numDep});
-            return ((double)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void CalIRAsync(double salB, int numDep) {
-            this.CalIRAsync(salB, numDep, null);
-        }
-        
-        /// <remarks/>
-        public void CalIRAsync(double salB, int numDep, object userState) {
-            if ((this.CalIROperationCompleted == null)) {
-                this.CalIROperationCompleted = new System.Threading.SendOrPostCallback(this.OnCalIROperationCompleted);
-            }
-            this.InvokeAsync("CalIR", new object[] {
-                        salB,
-                        numDep}, this.CalIROperationCompleted, userState);
-        }
-        
-        private void OnCalIROperationCompleted(object arg) {
-            if ((this.CalIRCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CalIRCompleted(this, new CalIRCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CalINSS", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public double CalINSS(double salB) {
-            object[] results = this.Invoke("CalINSS", new object[] {
-                        salB});
-            return ((double)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void CalINSSAsync(double salB) {
-            this.CalINSSAsync(salB, null);
-        }
-        
-        /// <remarks/>
-        public void CalINSSAsync(double salB, object userState) {
-            if ((this.CalINSSOperationCompleted == null)) {
-                this.CalINSSOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCalINSSOperationCompleted);
-            }
-            this.InvokeAsync("CalINSS", new object[] {
-                        salB}, this.CalINSSOperationCompleted, userState);
-        }
-        
-        private void OnCalINSSOperationCompleted(object arg) {
-            if ((this.CalINSSCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CalINSSCompleted(this, new CalINSSCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CalFGTS", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public double CalFGTS(float salB) {
-            object[] results = this.Invoke("CalFGTS", new object[] {
-                        salB});
-            return ((double)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void CalFGTSAsync(float salB) {
-            this.CalFGTSAsync(salB, null);
-        }
-        
-        /// <remarks/>
-        public void CalFGTSAsync(float salB, object userState) {
-            if ((this.CalFGTSOperationCompleted == null)) {
-                this.CalFGTSOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCalFGTSOperationCompleted);
-            }
-            this.InvokeAsync("CalFGTS", new object[] {
-                        salB}, this.CalFGTSOperationCompleted, userState);
-        }
-        
-        private void OnCalFGTSOperationCompleted(object arg) {
-            if ((this.CalFGTSCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CalFGTSCompleted(this, new CalFGTSCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CalcSalLiq", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public double CalcSalLiq(float salB, int numDemp) {
-            object[] results = this.Invoke("CalcSalLiq", new object[] {
-                        salB,
-                        numDemp});
-            return ((double)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void CalcSalLiqAsync(float salB, int numDemp) {
-            this.CalcSalLiqAsync(salB, numDemp, null);
-        }
-        
-        /// <remarks/>
-        public void CalcSalLiqAsync(float salB, int numDemp, object userState) {
-            if ((this.CalcSalLiqOperationCompleted == null)) {
-                this.CalcSalLiqOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCalcSalLiqOperationCompleted);
-            }
-            this.InvokeAsync("CalcSalLiq", new object[] {
-                        salB,
-                        numDemp}, this.CalcSalLiqOperationCompleted, userState);
-        }
-        
-        private void OnCalcSalLiqOperationCompleted(object arg) {
-            if ((this.CalcSalLiqCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CalcSalLiqCompleted(this, new CalcSalLiqCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ValidaCPF", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool ValidaCPF(string cpf) {
-            object[] results = this.Invoke("ValidaCPF", new object[] {
+                        numDep,
                         cpf});
-            return ((bool)(results[0]));
+            return ((double[])(results[0]));
         }
         
         /// <remarks/>
-        public void ValidaCPFAsync(string cpf) {
-            this.ValidaCPFAsync(cpf, null);
+        public void gerarAsync(double salB, int numDep, string cpf) {
+            this.gerarAsync(salB, numDep, cpf, null);
         }
         
         /// <remarks/>
-        public void ValidaCPFAsync(string cpf, object userState) {
-            if ((this.ValidaCPFOperationCompleted == null)) {
-                this.ValidaCPFOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidaCPFOperationCompleted);
+        public void gerarAsync(double salB, int numDep, string cpf, object userState) {
+            if ((this.gerarOperationCompleted == null)) {
+                this.gerarOperationCompleted = new System.Threading.SendOrPostCallback(this.OngerarOperationCompleted);
             }
-            this.InvokeAsync("ValidaCPF", new object[] {
-                        cpf}, this.ValidaCPFOperationCompleted, userState);
+            this.InvokeAsync("gerar", new object[] {
+                        salB,
+                        numDep,
+                        cpf}, this.gerarOperationCompleted, userState);
         }
         
-        private void OnValidaCPFOperationCompleted(object arg) {
-            if ((this.ValidaCPFCompleted != null)) {
+        private void OngerarOperationCompleted(object arg) {
+            if ((this.gerarCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ValidaCPFCompleted(this, new ValidaCPFCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.gerarCompleted(this, new gerarCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -258,139 +122,30 @@ namespace Cliente.localhost {
             }
             return false;
         }
-
-        internal string CalFGTS(double salB)
-        {
-            throw new NotImplementedException();
-        }
     }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    public delegate void CalIRCompletedEventHandler(object sender, CalIRCompletedEventArgs e);
+    public delegate void gerarCompletedEventHandler(object sender, gerarCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class CalIRCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class gerarCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal CalIRCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal gerarCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public double Result {
+        public double[] Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((double)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    public delegate void CalINSSCompletedEventHandler(object sender, CalINSSCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class CalINSSCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal CalINSSCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public double Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((double)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    public delegate void CalFGTSCompletedEventHandler(object sender, CalFGTSCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class CalFGTSCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal CalFGTSCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public double Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((double)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    public delegate void CalcSalLiqCompletedEventHandler(object sender, CalcSalLiqCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class CalcSalLiqCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal CalcSalLiqCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public double Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((double)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    public delegate void ValidaCPFCompletedEventHandler(object sender, ValidaCPFCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.3062.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ValidaCPFCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal ValidaCPFCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public bool Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((double[])(this.results[0]));
             }
         }
     }

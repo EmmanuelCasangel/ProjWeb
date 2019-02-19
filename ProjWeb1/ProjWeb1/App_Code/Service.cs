@@ -11,16 +11,40 @@ using System.Web.Services;
 
 public class Service : System.Web.Services.WebService
 {
-    public Service () {
+    public Service() {
 
         //Remova os comentários da linha a seguir se usar componentes designados 
         //InitializeComponent(); 
     }
+
     [WebMethod]
-    public double  CalIR(double salB, int numDep)
+    public double[] gerar(double salB, int numDep, string cpf)
     {
-        double salIR = CalINSS(salB);
-        salIR = salIR - (189.59 * numDep);
+        double[] hollerit = null;
+
+        if (ValidaCPF(cpf))
+        {
+            hollerit = new double[4];
+
+            hollerit[0] = CalINSS(salB);//INSS
+
+            hollerit[1] = CalIR(salB, numDep, hollerit[1]);//Imposto de Renda
+
+            hollerit[2] = CalFGTS(salB); //FGTS
+
+            hollerit[3] = CalSalLiq(salB, hollerit[0], hollerit[1]);//Salario Liquido
+
+        }
+
+        return hollerit;
+
+    }
+
+    [WebMethod]
+    private double  CalIR(double salB, int numDep, double inss)
+    {
+        double salIR = salB - ( (189.59 * numDep) + inss );
+
 
         if (salIR < 1903.98)
             return 0;
@@ -35,7 +59,7 @@ public class Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public double CalINSS(double salB)
+    private double CalINSS(double salB)
     {
 
         if (salB < 1659.38)
@@ -49,19 +73,20 @@ public class Service : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public double CalFGTS(double salB)
+    private double CalFGTS(double salB)
     {
         return salB * 0.08;
     }
 
     [WebMethod]
-    public double CalSalLiq(float salB, float inss, float ir)
+    private double CalSalLiq(double salB, double inss, double ir)
     {
         return salB - (inss + ir);
     }
 
+
     [WebMethod]
-    public bool ValidaCPF(string cpf)
+    private bool ValidaCPF(string cpf)
 
     {
 
